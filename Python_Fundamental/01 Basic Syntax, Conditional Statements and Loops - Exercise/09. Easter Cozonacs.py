@@ -35,4 +35,4 @@ while budget > total_price_per_cozunac:
     budget -= total_price_per_cozunac
     if cozunacs_counter % 3 == 0:
         colored_eggs -= (cozunacs_counter - 2)
-print(f"You made {cozunacs_counter} cozonacs! Now you have {colored_eggs} eggs and {budget}BGN left.")
+print(f"You made {cozunacs_counter} cozonacs! Now you have {colored_eggs} eggs and {budget}BGN left.)
