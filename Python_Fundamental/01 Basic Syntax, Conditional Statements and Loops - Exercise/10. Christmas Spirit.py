@@ -6,8 +6,8 @@ THREE_SKIRT = 5
 THREE_GARLANDS = 3
 THREE_LIGHTS = 1
 
-sum_spent = 0
 christmas_spirit = 0
+sum_spent = 0
 
 for day_number in range(1, days + 1):
     if day_number % 11 == 0:
@@ -15,7 +15,7 @@ for day_number in range(1, days + 1):
     if day_number % 2 == 0:
         sum_spent += ORNAMENT_SET * quantity
         christmas_spirit += 5
-    if days % 3 == 0:
+    if day_number % 3 == 0:
         sum_spent += (THREE_SKIRT * quantity + THREE_GARLANDS * quantity)
         christmas_spirit += 13
     if day_number % 5 == 0:
@@ -31,5 +31,5 @@ for day_number in range(1, days + 1):
     if day_number == days and day_number % 10 == 0:
         christmas_spirit -= 30
 
-print(f'Total cost: {sum_spent}')
-print(f'Total spirit: {christmas_spirit}')
+print(f"Total cost: {sum_spent}")
+print(f"Total spirit: {christmas_spirit}")
