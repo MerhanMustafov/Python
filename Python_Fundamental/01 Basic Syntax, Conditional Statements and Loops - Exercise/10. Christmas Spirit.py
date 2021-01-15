@@ -4,7 +4,7 @@ days = int(input())
 ORNAMENT_SET = 2
 THREE_SKIRT = 5
 THREE_GARLANDS = 3
-THREE_LIGHTS = 15
+THREE_LIGHTS = 1
 
 sum_spent = 0
 christmas_spirit = 0
