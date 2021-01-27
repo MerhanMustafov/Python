@@ -1,9 +1,9 @@
-gidts_name = input()
-lst = gidts_name.split(" ")
+gifts_name = input()
+lst = gifts_name.split(" ")
 command = input()
 while command != "No Money":
     current_lst = command.split()
-    index = 0
+
     if "OutOfStock" in current_lst:
         for i in range (len(lst)):
             if lst[i] == current_lst[1]:
