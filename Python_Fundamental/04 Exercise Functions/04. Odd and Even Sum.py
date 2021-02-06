@@ -8,8 +8,9 @@ def sum_of_even_and_odd_nums(number):
             even += digit
         if digit % 2 != 0:
             odd += digit
-    return (f"Odd sum = {odd}, Even sum = {even}")
+    return [odd, even]
 
 
 number = int(input())
-print(sum_of_even_and_odd_nums(number))
+result = sum_of_even_and_odd_nums(number)
+print(f"Odd sum = {result[0]}, Even sum = {result[1]}")

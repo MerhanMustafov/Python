@@ -1,3 +1,4 @@
+
 string = input()
 str = string.split()
 lst = []
@@ -9,4 +10,5 @@ for n in range(len(str)):
     else:
         negative_n = -number
         lst.append(negative_n)
+
 print(lst)

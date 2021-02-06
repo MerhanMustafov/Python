@@ -21,5 +21,5 @@ def pass_validation(list_password):
         if num_of_digits < 2:
             print("Password must have at least 2 digits")
 
-password = input().lower()
+password = input()
 pass_validation(password)
