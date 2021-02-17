@@ -1,27 +1,29 @@
-the_rows_of_the_matrix = int(input())
-lst_of_rows = []
-for line in range(the_rows_of_the_matrix):
-    row = input().split()
-    row = list(map(int, row))
-    lst_of_rows.append(row)
+matrix = [input().split() for index in range(int(input()))]
 
-tracking_lst = 0
-tracking_position = 0
-final_counter = 0
-for lst in range(len(lst_of_rows)):
-    current_lst = lst_of_rows[tracking_lst]
-    current_position = current_lst[tracking_position]
-    if current_position == 1:
-       if lst_of_rows[tracking_lst - 1][tracking_position] == 0 or lst_of_rows[tracking_lst - 1][tracking_position]== 1:
-           if lst_of_rows[tracking_lst + 1][tracking_position] == 0:
-               if lst_of_rows[tracking_lst][tracking_position + 1] == 0:
-                   final_counter += 1
-           if current_lst[tracking_position - 1] == 0:
-    tracking_position += 1
-    if current_position == 1 and current_position+1 == 0:
-        print(0)
+def recursion(start_r, count_, matrix_):
+    is_bad = False
+    for row in range(start_r, len(matrix)):
+        for col in range(len(matrix[row])):
+            if matrix[row][col] == '1':
+                if row in range(len(matrix) - 1) and col in range(len(matrix[row]) - 1) and matrix[row][col+1] == '1' \
+                        and matrix[row + 1][col] == '1':
+                    is_bad = True
+                if row in range(len(matrix) - 1) and matrix[row+1][col] == '1':
+                    matrix[row][col] = 0
+                elif col in range(len(matrix[row]) - 1) and matrix[row][col+1] == '1':
+                    matrix[row][col] = 0
+                else:
+                    if is_bad:
+                        pass
+                    else:
+                        if row in range(len(matrix) - 1) and matrix[row-1][col] == '1':
+                            pass
+                        else:
+                            count_ += 1
+        is_bad = False
+        start_r += 1
+        return recursion(start_r, count_, matrix_)
+    return count_
 
 
-
-print(lst_of_rows)
-
+print(recursion(0, 0, matrix))
