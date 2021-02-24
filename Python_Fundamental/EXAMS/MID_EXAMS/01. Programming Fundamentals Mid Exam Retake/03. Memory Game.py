@@ -15,6 +15,12 @@ while not command == "end" and len(elements) > 0:
     elif elements[index_1] == elements[index_2]:
         print(f"Congrats! You have found matching elements - {elements[index_1]}!")
         elements = [el for el in elements if not el == elements[index_1]]
+        # if index_1 > index_2:
+        #     elements.pop(index_1)
+        #     elements.pop(index_2)
+        # else:
+        #     elements.pop(index_2)
+        #     elements.pop(index_1)
 
     elif elements[index_1] != elements[index_2]:
         print("Try again!")
