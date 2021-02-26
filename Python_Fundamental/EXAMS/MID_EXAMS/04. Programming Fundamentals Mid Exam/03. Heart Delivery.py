@@ -38,3 +38,32 @@ if count == 0:
     print("Mission was successful.")
 else:
     print(f"Cupid has failed {count} places.")
+
+# houses = [int(x) for x in input().split("@")]
+#
+# command = input()
+# count = 0
+# while not command == "Love!":
+#     command = command.split()
+#     number = int(command[1])
+#     count += number
+#     if not 0 <= count < len(houses):
+#         count = 0
+#     if houses[count] == 0:
+#         print(f"Place {count} already had Valentine's day.")
+#         command = input()
+#         continue
+#     houses[count] -= 2
+#     if houses[count] == 0:
+#         print(f"Place {count} has Valentine's day.")
+#
+#     command = input()
+# print(f"Cupid's last position was {count}.")
+# counter = 0
+# for el in houses:
+#     if el > 0:
+#         counter += 1
+# if counter == 0:
+#     print("Mission was successful.")
+# else:
+#     print(f"Cupid has failed {counter} places.")
