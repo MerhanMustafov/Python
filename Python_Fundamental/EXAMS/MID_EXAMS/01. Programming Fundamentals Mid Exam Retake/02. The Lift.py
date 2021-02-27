@@ -25,3 +25,27 @@ if  empty_spots < len(wagon) and queue == 0:
 elif empty_spots == len(wagon) and queue > 0:
     print(f"There isn't enough space! {queue} people in a queue!")
 print(*wagon, sep=" ")
+
+# people = int(input())
+# wagon = [int(x) for x in input().split()]
+# index = 0
+# while people > 0:
+#     if wagon[-1] == 4 and len(wagon) == index:
+#         break
+#     for el in range(people):
+#         if wagon[index] == 4:
+#             break
+#         wagon[index] += 1
+#         people -= 1
+#     index += 1
+#
+# wagon = list(map(str, wagon))
+# count = wagon.count("4")
+# if count < len(wagon) and people == 0:
+#     print("The lift has empty spots!")
+#     print(" ".join(wagon))
+# elif count == len(wagon) and people > 0:
+#     print(f"There isn't enough space! {people} people in a queue!")
+#     print(" ".join(wagon))
+# else:
+#     print(" ".join(wagon))

@@ -10,3 +10,12 @@ else:
     final.sort(reverse=True)
     final = final[:5]
 print(*final, sep=" ")
+
+# numbers = [int(x) for x in input().split()]
+# average = sum(numbers) / len(numbers)
+# numbers = [num for num in numbers if num > average]
+# if all(x==numbers for x in numbers):
+#     print("No")
+# else:
+#     numbers.sort(reverse=True)
+#     print(*numbers[:5],sep=" ")
