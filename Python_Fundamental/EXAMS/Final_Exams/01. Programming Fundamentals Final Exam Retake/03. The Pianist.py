@@ -25,8 +25,10 @@ while not command == "Stop":
             print(f"Invalid operation! {piece} does not exist in the collection.")
     elif command[0] == "ChangeKey":
         piece = command[1]
+        new_key = command[2]
         if piece in my_dict.keys():
             my_dict[piece]["key"] = command[2]
+            print(f"Changed the key of {piece} to {new_key}!")
         else:
             print(f"Invalid operation! {piece} does not exist in the collection.")
     command = input()
