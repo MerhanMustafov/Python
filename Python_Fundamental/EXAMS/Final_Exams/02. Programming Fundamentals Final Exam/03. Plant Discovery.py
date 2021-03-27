@@ -32,7 +32,7 @@ for p,c  in my_dict.items():
     o = c['Rating']
     c['Rating'] = sum(o) / len(o)
 
-my_dict = dict(sorted(my_dict.items(), key=lambda x: (x[0][2], x[0][3]), reverse=True))
+my_dict = sorted(my_dict.items(), key=lambda x: (-x[1]['Rarity'], -x[1]['Rating']) )
 print(f"Plants for the exhibition:")
-for a, b in my_dict.items():
+for a, b in my_dict:
     print(f"- {a}; Rarity: {b['Rarity']}; Rating: {b['Rating']:.2f}")
