@@ -5,9 +5,7 @@ for _ in range(n):
     plant = command[0]
     rarity = int(command[1])
     if not plant in my_dict.keys():
-        my_dict[plant] = {'Rarity': rarity, 'Rating': []}
-    elif plant in my_dict.keys():
-        my_dict[plant]['Rarity'] = rarity
+        my_dict[plant] = {'rarity': rarity, 'ratings': []}
 
 new_command = input()
 while not new_command == "Exhibition":
@@ -16,23 +14,35 @@ while not new_command == "Exhibition":
         r = new_command[1].split(" - ")
         plant = r[0]
         rating = int(r[1])
-        my_dict[plant]['Rating'].append(rating)
+        if plant in my_dict:
+            my_dict[plant]['ratings'].append(rating)
+        else:
+            print('error')
     elif new_command[0] == "Update":
         s = new_command[1].split(" - ")
         plant = s[0]
         new_rarity = int(s[1])
-        my_dict[plant]["Rarity"] = new_rarity
+        if plant in my_dict:
+            my_dict[plant]["rarity"] = new_rarity
+        else:
+            print('error')
     elif new_command[0] == "Reset":
         plant = new_command[1]
-        my_dict[plant]["Rating"] = [0.0]
+        if plant in my_dict:
+            my_dict[plant]["ratings"].clear()
+        else:
+            print('error')
     else:
         print('error')
     new_command = input()
-for p,c  in my_dict.items():
-    o = c['Rating']
-    c['Rating'] = sum(o) / len(o)
+for plant,value  in my_dict.items():
+    if value['ratings']:
+        avg = sum(value['ratings']) / len(value['ratings'])
+    else:
+        avg = 0
+    my_dict[plant]['avg'] = avg
 
-my_dict = sorted(my_dict.items(), key=lambda x: (-x[1]['Rarity'], -x[1]['Rating']) )
+my_dict_one = sorted(my_dict.items(), key=lambda x: (-x[1]['rarity'], -x[1]['avg']) )
 print(f"Plants for the exhibition:")
-for a, b in my_dict:
-    print(f"- {a}; Rarity: {b['Rarity']}; Rating: {b['Rating']:.2f}")
+for plant_name, values in my_dict_one:
+    print(f"- {plant_name}; Rarity: {values['rarity']}; Rating: {values['avg']:.2f}")
