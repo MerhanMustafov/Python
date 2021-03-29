@@ -61,4 +61,3 @@ while not command == 'End':
 data = sorted(data.items(), key=lambda kdv: (-kdv[1]['hp'], kdv[0]))
 for hero_name, data_dict in data:
     print(f"{hero_name}\n HP: {data_dict['hp']}\n MP: {data_dict['mp']}")
-  
