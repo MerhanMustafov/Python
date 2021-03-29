@@ -1,5 +1,6 @@
 import re
-pattern = r"(@|\#)(?P<first>[a-zA-Z][a-zA-Z][a-zA-Z]+)\1\1(?P<socond>[a-zA-Z][a-zA-Z][a-zA-Z]+)\1"
+pattern = r"(@|\#)([a-zA-Z][a-zA-Z][a-zA-Z]+)\1\1([a-zA-Z][a-zA-Z][a-zA-Z]+)\1"
+    # r"(@|\#)(?P<first>[a-zA-Z][a-zA-Z][a-zA-Z]+)\1\1(?P<socond>[a-zA-Z][a-zA-Z][a-zA-Z]+)\1"
 text = input()
 matches = re.findall(pattern, text)
 count = len(matches)
