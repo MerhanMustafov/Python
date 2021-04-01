@@ -38,3 +38,45 @@ for p, c in my_dict.items():
     print(f"{p} -> Composer: {c['composuare']}, Key: {c['key']}")
 
 
+# n = int(input())
+# data = {}
+# for _ in range(n):
+#     command_one = input().split("|")
+#     piece = command_one[0]
+#     composer = command_one[1]
+#     key = command_one[2]
+#     data[piece] = {'c': composer, 'k': key}
+#
+# second_command = input()
+# while not second_command == "Stop":
+#     second_command = second_command.split("|")
+#     p = second_command[1]
+#     if second_command[0] == "Add":
+#         composer = second_command[2]
+#         key = second_command[3]
+#         if not p in data:
+#             data[p] = {'c': composer, 'k': key}
+#             print(f"{p} by {composer} in {key} added to the collection!")
+#         else:
+#             print(f"{p} is already in the collection!")
+#     elif second_command[0] == "Remove":
+#         p = second_command[1]
+#         if p in data:
+#             data.pop(p)
+#             print(f"Successfully removed {p}!")
+#         else:
+#             print(f"Invalid operation! {p} does not exist in the collection.")
+#     elif second_command[0] == "ChangeKey":
+#         p = second_command[1]
+#         new_key = second_command[2]
+#         if p in data:
+#             data[p]['k'] = new_key
+#             print(f"Changed the key of {p} to {new_key}!")
+#         else:
+#             print(f"Invalid operation! {p} does not exist in the collection.")
+#     second_command = input()
+# data = sorted(data.items(), key=lambda kdv: (kdv[0], kdv[1]['c']))
+# for kkeyy, dict in data:
+#     print(f"{kkeyy} -> Composer: {dict['c']}, Key: {dict['k']}")
+
+
