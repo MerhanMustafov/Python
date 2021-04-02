@@ -1,46 +1,40 @@
-input_lines = input()
+data = input()
+pool = {}
+while not data == "Season end":
+    if '->' in data:
+        player, position, skill = data.split(' -> ')
+        skill = int(skill)
+        if player not in pool:
+            pool[player] = {}
+            pool[player][position] = skill
+        elif player in pool and position not in pool[player]:
+            pool[player][position] = skill
+        elif player in pool and position in pool[player]:
+            if pool[player][position] < skill:
+                pool[player][position] = skill
+    elif 'vs' in data:
+        player_one, player_two = data.split(' vs ')
+        if player_one in pool and player_two in pool:
+            for el in pool[player_one]:
+                if el in pool[player_two]:
+                    if pool[player_one][el] > pool[player_two][el]:
+                        pool.pop(player_two)
+                    elif pool[player_one][el] < pool[player_two][el]:
+                        pool.pop(player_one)
+                    break
 
-data = {}
-data_2 = {}
-while not input_lines == "Season end":
-    if "->" in input_lines:
-        input_lines = input_lines.split(" -> ")
-        player = input_lines[0]
-        position = input_lines[1]
-        skill = int(input_lines[2])
-        if not player in data.keys():
-            data[player] = {'p': [position], 's': [skill]}
-            data_2[player] = {'p': position, 's': skill}
 
-        else:
-            data[player]['p'].append(position)
-            data[player]['s'].append(skill)
-            data_2[player]['s'] += skill
-    elif "vs" in input_lines:
-        input_lines = input_lines.split(" vs ")
-        player_1 = input_lines[0]
-        player_2 = input_lines[1]
-        if player_1 in data and player_2 in data:
-            for x in data[player_1]['p']:
-                for y in data[player_2]['p']:
-                    if x == y:
-                        if sum(data[player_1]['s']) < sum(data[player_2]['s']):
-                            data.pop(player_1)
-                        elif sum(data[player_2]['s']) < sum(data[player_1]['s']):
-                            data.pop(player_2)
-                        else:
-                            input_lines = input()
-                            continue
+    data = input()
+for k, v in pool.items():
+    sum = 0
+    for el in v:
+        sum  += v[el]
+    pool[k]['total'] = sum
 
-    input_lines = input()
-
-data = sorted(data.items(), key=lambda kdv: (-sum(kdv[1]['s']), kdv[0]))
-for key, dict in data:
-    print(f"{key}: {sum(dict['s'])} skill")
-    dict['s'].sort(reverse= True)
-    dict['p'].sort(reverse = True)
-    for x in sorted(dict['s']):
-        dict['s'].sort()
-    # for k, v in sorted(data[]):
-        print(dict)
-        a = 0
+s_pool = sorted(pool.items(), key=lambda kvp: (-kvp[1]['total'], kvp[0]))
+for el in s_pool:
+    print(f"{el[0]}: {el[1]['total']} skill")
+    el[1].pop('total')
+    s_skills = sorted(el[1].items(), key=lambda kvp: (-kvp[1], kvp[0]))
+    for skill in s_skills:
+        print(f"- {skill[0]} <::> {skill[1]}")
