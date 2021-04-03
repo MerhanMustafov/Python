@@ -1,3 +1,5 @@
+#This is 01 Problem but it gives 90/100. TODO figure out
+
 string = input().strip()
 
 command = input()
