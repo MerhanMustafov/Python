@@ -13,3 +13,4 @@ def grade_function(grade):
 grade = float(input())
 result = grade_function(grade)
 print(result)
+
