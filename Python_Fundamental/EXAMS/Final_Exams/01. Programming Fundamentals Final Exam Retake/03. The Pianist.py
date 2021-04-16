@@ -80,3 +80,58 @@ for p, c in my_dict.items():
 #     print(f"{kkeyy} -> Composer: {dict['c']}, Key: {dict['k']}")
 
 
+
+# With functions
+# def dict(n):
+#     dict = {}
+#     for _ in range(n):
+#         command = input().split("|")
+#         piece = command[0]
+#         composer = command[1]
+#         key = command[2]
+#         dict[piece] = {"c": composer, "k": key}
+#     return dict
+#
+# def add(command):
+#     piece = command[1]
+#     composer = command[2]
+#     key = command[3]
+#     if piece in my_dict:
+#         print(f"{piece} is already in the collection!")
+#     else:
+#         my_dict[piece] = {"c": composer, "k": key}
+#         print(f"{piece} by {composer} in {key} added to the collection!")
+# def remove(command):
+#     piece = command[1]
+#     if piece in my_dict:
+#         my_dict.pop(piece)
+#         print(f"Successfully removed {piece}!")
+#     else:
+#         print(f"Invalid operation! {piece} does not exist in the collection.")
+# def change_key(command):
+#     piece = command[1]
+#     new_key = command[2]
+#     if piece in my_dict:
+#         my_dict[piece]["k"] = new_key
+#         print(f"Changed the key of {piece} to {new_key}!")
+#     else:
+#         print(f"Invalid operation! {piece} does not exist in the collection.")
+#
+#
+# n = int(input())
+# my_dict = dict(n)
+#
+#
+# command = input()
+# while not command == "Stop":
+#     command = command.split("|")
+#     if command[0] == "Add":
+#         add(command)
+#     elif command[0] == "Remove":
+#         remove(command)
+#     elif command[0] == "ChangeKey":
+#         change_key(command)
+#     command = input()
+# my_dict = sorted(my_dict.items(), key=lambda kvd: (kvd[0], kvd[1]['c']))
+# for key, d in my_dict:
+#     print(f"{key} -> Composer: {d['c']}, Key: {d['k']}")
