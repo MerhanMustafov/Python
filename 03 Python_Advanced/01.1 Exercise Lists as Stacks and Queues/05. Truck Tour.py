@@ -1,33 +1,22 @@
 from collections import deque
+
 n = int(input())
 
 stations = deque()
 
 for _ in range(n):
-    stations.append(input())
-
-
-
-
+    stations.append([el for el in input().split()])
 
 for big_circle_iteration in range(n):
     is_valid = True
     tank_petrol = 0
     for small_circle_iteration in range(n):
-        current_station = stations[big_circle_iteration]
+        tank_petrol += int(stations[small_circle_iteration][0]) - int(stations[small_circle_iteration][1])
 
-        petrol, distance_to_next_station = current_station.split()
-        petrol = int(petrol)
-        distance_to_next_station = int(distance_to_next_station)
-        tank_petrol += petrol
-
-        if tank_petrol >= distance_to_next_station:
-            tank_petrol -= distance_to_next_station
-            stations.append(stations.popleft())
-        else:
+        if tank_petrol < 0:
             is_valid = False
+            stations.append(stations.popleft())
             break
-        # stations.append(current_station)
 
     if is_valid:
         print(big_circle_iteration)
