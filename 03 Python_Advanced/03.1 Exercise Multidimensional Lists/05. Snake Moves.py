@@ -13,5 +13,6 @@ for row_ind in range(rows):
         word.append(word.popleft())
     if not row_ind % 2 == 0:
         current_word = reverse_string(current_word)
+        # current_word = "".join([el for el in reversed(current_word)])
     print(current_word)
 
