@@ -1,8 +1,8 @@
 def filling_the_matrix(rows):
     matrix = []
     for _ in range(rows):
-        # matrix.append([el for el in input().split(" ")])
-        matrix.append(list(map(str, input().split(" "))))
+        matrix.append([el for el in input().split(" ")])
+        # matrix.append(list(map(str, input().split(" "))))
     return matrix
 rows, cols = input().split()
 matrix = filling_the_matrix(int(rows))
@@ -10,7 +10,7 @@ matrix = filling_the_matrix(int(rows))
 
 def swap(command, matrix):
     command = command.split(" ")
-    if command[0] == "swap":
+    if command[0] == "swap" and len(command) == 5:
         row_1, col_1 = int(command[1]), int(command[2])
         row_2, col_2 = int(command[3]), int(command[4])
         if (0 <= row_1 < len(matrix) and 0 <= col_1 < len(matrix[row_1]))\
