@@ -9,7 +9,19 @@
 #             # print(x, end=" ")
 # print(*new_num, sep=" ")
 
-regular_list = input().split("|")
-flat_list = [item for sublist in reversed(regular_list) for item in sublist if item.isdigit()]
-# print('Original list', regular_list)
-print(' '.join(flat_list))
+# regular_list = input().split("|")
+# flat_list = [item for sublist in reversed(regular_list)for item in sublist if item.isdigit()]
+# # print('Original list', regular_list)
+# print(' '.join(flat_list))
+
+result = [' '.join(list_as_string.split())for list_as_string in input().split("|")[::-1]]
+print(*result, sep=" ")
+
+
+
+
+
+
+
+
+
