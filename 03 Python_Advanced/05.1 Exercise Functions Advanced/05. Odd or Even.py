@@ -1,4 +1,4 @@
-###-This is GREAT example of good usage of functions-###
+###-This is GREAT example for good usage of functions-###
 
 def odd(nums):
     return sum([num for num in nums if num % 2 != 0]) * len(nums)
