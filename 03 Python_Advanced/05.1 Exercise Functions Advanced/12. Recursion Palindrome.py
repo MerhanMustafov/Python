@@ -1,13 +1,9 @@
-def palindrome(word, index = 0):
-    if word == word[::-1]:
-        return (f"{word} is palindrome")
-    elif word != word[::-1]:
-        return (f"{word} is not a palindrome")
-
-    # for i in range(index, len(word)):
-    #     word[index], word[i] = word[i], word[index]
-    #     palindrome(word, index)
-    #     word[index], word[i] = word[i], word[index]
+def palindrome(word, index):
+    if index == len(word) // 2:
+        return f"{word} is a palindrome"
+    elif not word[index] == word[len(word) - 1 - index]:
+        return f"{word} is not a palindrome"
+    return palindrome(word, index + 1)
 
 print(palindrome("acba", 0))
 print(palindrome("peter", 0))
