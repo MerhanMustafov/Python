@@ -26,3 +26,5 @@ if employee_capasity:
 else:
     print(f"Not all orders are completed.")
     print(f"Orders left: {', '.join(int_to_str(pizza_orders))}")
+
+# https://pastebin.com/yg5v7nTP
