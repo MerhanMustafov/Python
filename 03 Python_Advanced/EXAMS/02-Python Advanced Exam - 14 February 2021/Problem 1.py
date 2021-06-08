@@ -1,6 +1,5 @@
 from collections import deque
 
-
 def int_to_str(n):
     return [str(x) for x in n]
 
@@ -8,25 +7,25 @@ def int_to_str(n):
 def decreace_and_move(f_effect):
     f_effect[0] -= 1
     f_effect.append(f_effect.popleft())
-    # return palm_firework, willow_firework, crossette_firework
+    return f_effect
 
 
-def check_divisibility(f_effects, e_power, palm_firework, willow_firework, crossette_firework):
+def check_divisibility(f_effects, e_power, p, w, c):
 
-    if ((sum([f_effects[0], e_power[-1]]) % 3 == 0) and (sum([f_effects[0], e_power[-1]]) % 5 == 0)):
+    if sum([f_effects[0], e_power[-1]]) % 3 == 0 and sum([f_effects[0], e_power[-1]]) % 5 == 0:
         f_effects.popleft(), e_power.pop()
-        crossette_firework += 1
-    elif ((sum([f_effects[0], e_power[-1]]) % 3 == 0) and (sum([f_effects[0], e_power[-1]]) % 5 != 0)):
+        c += 1
+    elif sum([f_effects[0], e_power[-1]]) % 3 == 0 and sum([f_effects[0], e_power[-1]]) % 5 != 0:
         f_effects.popleft(), e_power.pop()
-        palm_firework += 1
-    elif ((sum([f_effects[0], e_power[-1]]) % 3 != 0) and (sum([f_effects[0], e_power[-1]]) % 5 == 0)):
+        p += 1
+    elif sum([f_effects[0], e_power[-1]]) % 3 != 0 and sum([f_effects[0], e_power[-1]]) % 5 == 0:
         f_effects.popleft(), e_power.pop()
-        willow_firework += 1
+        w += 1
 
     else:
         decreace_and_move(f_effects)
 
-    return palm_firework, willow_firework, crossette_firework
+    return p, w, c
 
 
 firework_effects = deque([int(n) for n in input().split(", ")])
@@ -44,17 +43,19 @@ while firework_effects and explosive_power:
     if explosive_power[-1] <= 0:
         explosive_power.pop()
         continue
-  
+
     else:
         palm_firework, \
         willow_firework, \
         crossette_firework = check_divisibility(firework_effects, explosive_power,
                                                 palm_firework, willow_firework,
                                                 crossette_firework)
-        if ((palm_firework >= 3) and (willow_firework >= 3) and (crossette_firework >= 3)):
+        # because of that missed IF
+        # i was receaving 90/100
+        if palm_firework >= 3 and willow_firework >= 3 and crossette_firework >= 3:
             break
 
-if ((palm_firework >= 3) and (willow_firework >= 3) and (crossette_firework >= 3)):
+if palm_firework >= 3 and willow_firework >= 3 and crossette_firework >= 3:
     print(f"Congrats! You made the perfect firework show!")
 
 else:
@@ -69,3 +70,5 @@ if explosive_power:
 print(f"Palm Fireworks: {palm_firework}")
 print(f"Willow Fireworks: {willow_firework}")
 print(f"Crossette Fireworks: {crossette_firework}")
+
+
