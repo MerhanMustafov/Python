@@ -44,9 +44,7 @@ while firework_effects and explosive_power:
     if explosive_power[-1] <= 0:
         explosive_power.pop()
         continue
-    if (firework_effects[0] <= 0) and (explosive_power[-1] <= 0):
-        firework_effects.popleft(), explosive_power.pop()
-        continue
+  
     else:
         palm_firework, \
         willow_firework, \
