@@ -2,7 +2,8 @@ from collections import deque
 
 def int_to_str(lst):
     return [str(x) for x in lst]
-def male(males,females, matches):
+
+def check_for_matches(males,females, matches):
     matches = 0
     if males[-1] <= 0:
         males.pop()
@@ -32,7 +33,7 @@ females = deque([int(n) for n in input().split()])
 matches = 0
 while males and females:
 
-    matches += male(males,females, matches)
+    matches += check_for_matches(males,females, matches)
 
 
 print(f"Matches: {matches}")
