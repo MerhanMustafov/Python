@@ -15,6 +15,8 @@ def best_list_pureness(*test):
     return f"Best pureness {best_pureness} after {best_rotation_num} rotations"
 
 
+
+
 # test = ([4, 3, 2, 6], 4)
 # result = best_list_pureness(*test)
 # print(result)
@@ -22,5 +24,30 @@ def best_list_pureness(*test):
 # result = best_list_pureness(*test)
 # print(result)
 # test = ([1, 2, 3, 4, 5], 10)
+# result = best_list_pureness(*test)
+# print(result)
+
+
+
+# from collections import deque
+# def best_list_pureness(ls, k):
+#
+#     best = 0
+#     ratation = None
+#     for i in range(k + 1):
+#         suma = 0
+#         for indx, value in enumerate(ls):
+#             suma += (indx * value)
+#         if suma > best:
+#             best = suma
+#             ratation = i
+#
+#         a = ls.pop()
+#         ls = [a] + ls
+#
+#     return f"Best pureness {best} after {ratation} rotations"
+#
+#
+# test = ([4, 3, 2, 6], 4)
 # result = best_list_pureness(*test)
 # print(result)
