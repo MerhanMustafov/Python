@@ -1,76 +1,131 @@
+def read_matrix(size):
+    return [[None]*size for _ in range(size)]
 
-board_size = int(input())
-bombs_number = int(input())
-BOMBA = "*"
-EMPTY = "0"
-board = [[int(el) for el in EMPTY * board_size] for ele in range(board_size)]
-
-
-def bombs_positions():
+def bomb_positions(num_bombs):
     bomb_coordinates = []
-    for position in range(bombs_number):
+    for position in range(num_bombs):
         data = input()
-        cord = [el for el in data if el.isnumeric()]
-        cord = [int(el) for el in cord]
-        bomb_coordinates.append(cord)
+        row, col = [int(n) for n in data[1:-1].split(", ")]
+        # if 0 <= row < len(matrix) and 0 <= col < len(matrix):
+        bomb_coordinates.append([row, col])
     return bomb_coordinates
 
-
-bomb_list = bombs_positions()
-
-
-def making_the_table_with_bombs():
-    for bomb in bomb_list:
-        bomb_row, bomb_col = bomb[0], bomb[1]
-        for r in range(len(board)):
-            for c in range(len(board[0])):
-                if r == bomb_row and c == bomb_col:
-                    board[r][c] = BOMBA
-
-    return board
+def placing_the_bombs(matrix, bomb_pos):
+    for pos in bomb_pos:
+        matrix[pos[0]][pos[1]] = "*"
+    return matrix
 
 
-boarda = making_the_table_with_bombs()
-deltas = [
-    (0, -1),
-    (-1, -1),
-    (-1, 0),
-    (-1, +1),
-    (0, +1),
-    (+1, +1),
-    (+1, 0),
-    (+1, -1),
-]
-number = 0
-for row in range(len(boarda)):
-    for column in range(len(boarda[0])):
-        current_row = row
-        current_col = column
-        current_index = boarda[current_row][current_col]
-        if not current_index == BOMBA:
-            for delt in deltas:
-                delta_row, delta_col = delt[0], delt[1]
-                delta_row_index, delta_col_index = delta_row + current_row, delta_col + current_col
-                if 0 <= delta_row_index < len(boarda) and 0 <= delta_col_index < len(boarda):
-                    for el in bomb_list:
-                        bob_row = el[0]
-                        bob_col = el[1]
-                        if delta_row_index == bob_row and delta_col_index == bob_col:
-                            number += 1
-                            break
-            boarda[current_row][current_col] = number
-            number = 0
-sus = []
-for i in range(len(boarda)):
-    result = ''
-    for el in range(len(boarda[i])):
-        result += str(boarda[i][el])
-        if el < len(boarda) - 1:
-            result += " "
-    sus.append(result)
+size = int(input())
+matrix = read_matrix(size)
 
-for el in sus:
-    print(el)
+num_bombs = int(input())
+bomb_pos = bomb_positions(num_bombs)
+
+matrix = placing_the_bombs(matrix, bomb_pos)
+
+count = 0
+for row in range(len(matrix)):
+    for col in range(len(matrix)):
+        if matrix[row][col] == "*":
+            continue
+        if row == 0:
+            if col == 0:
+                if matrix[row][col+1] == "*":#right
+                    count += 1
+                if matrix[row+1][col] == "*":#down
+                    count += 1
+                if matrix[row+1][col+1] == "*":#downright
+                    count += 1
+            elif col == len(matrix)-1:
+                if matrix[row][col-1] == "*":#left
+                    count += 1
+                if matrix[row+1][col] == "*":#down
+                    count += 1
+                if matrix[row+1][col-1] == "*":#downleft
+                    count += 1
+            else:
+                if matrix[row][col+1] == "*":#right
+                    count += 1
+                if matrix[row][col-1] == "*":#left
+                    count += 1
+                if matrix[row+1][col] == "*":#down
+                    count += 1
+                if matrix[row+1][col+1] == "*":#downright
+                    count += 1
+                if matrix[row+1][col-1] == "*":#downleft
+                    count += 1
 
 
+        elif row == len(matrix) - 1:
+            if col == 0:
+                if matrix[row][col+1] == "*":#right
+                    count += 1
+                if matrix[row-1][col] == "*":#up
+                    count += 1
+                if matrix[row-1][col+1] == "*":#upright
+                    count += 1
+            elif col == len(matrix) - 1:
+                if matrix[row][col - 1] == "*":#left
+                    count += 1
+                if matrix[row - 1][col] == "*":#up
+                    count += 1
+                if matrix[row - 1][col - 1] == "*":#upleft
+                    count += 1
+            else:
+                if matrix[row][col+1] == "*":#right
+                    count += 1
+                if matrix[row][col-1] == "*":#left
+                    count += 1
+                if matrix[row-1][col] == "*":#up
+                    count += 1
+                if matrix[row-1][col+1] == "*":#upright
+                    count += 1
+                if matrix[row-1][col-1] == "*":#upleft
+                    count += 1
 
+        else:
+            if col == 0:
+                if matrix[row][col+1] == "*": #right
+                    count += 1
+                if matrix[row+1][col] == "*":#down
+                    count += 1
+                if matrix[row-1][col] == "*":#up
+                    count += 1
+                if matrix[row-1][col+1] == "*":#upright
+                    count += 1
+                if matrix[row+1][col+1] == "*":#downright
+                    count += 1
+            elif col == len(matrix) - 1:
+                if matrix[row][col-1] == "*": #left
+                    count += 1
+                if matrix[row+1][col] == "*":#down
+                    count += 1
+                if matrix[row-1][col] == "*":#up
+                    count += 1
+                if matrix[row-1][col-1] == "*":#upleft
+                    count += 1
+                if matrix[row+1][col-1] == "*":#downleft
+                    count += 1
+            else:
+                if matrix[row][col+1] == "*": #right
+                    count += 1
+                if matrix[row][col-1] == "*": #left
+                    count += 1
+                if matrix[row+1][col] == "*":#down
+                    count += 1
+                if matrix[row-1][col] == "*":#up
+                    count += 1
+                if matrix[row-1][col+1] == "*":#upright
+                    count += 1
+                if matrix[row+1][col+1] == "*":#downright
+                    count += 1
+                if matrix[row-1][col-1] == "*":#upleft
+                    count += 1
+                if matrix[row+1][col-1] == "*":#downleft
+                    count += 1
+
+        matrix[row][col] = count
+        count = 0
+for r in matrix:
+    print(*r,sep=" ")
