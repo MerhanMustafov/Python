@@ -1,0 +1,7 @@
+lst= []
+for x in range(7):
+    lst.append(7)
+    if x == 3:
+        lst.append(8)
+for el in lst:
+    print(el)
