@@ -1,10 +1,10 @@
 class Flower:
-    def __init__( self, name, water_requirenments, is_happy = False):
+    def __init__( self, name, water_requirements , is_happy = False):
         self.name = name
-        self.water_requirenments = water_requirenments
+        self.water_requirements  = water_requirements
         self.is_happy = is_happy
     def water(self, quantity):
-        if quantity >= self.water_requirenments:
+        if quantity >= self.water_requirements:
             self.is_happy = True
         else:
             self.is_happy = False
