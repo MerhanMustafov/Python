@@ -14,12 +14,16 @@ class Trainer:
         return f'Caught {pokemon.pokemon_details()}'
 
     def release_pokemon(self, pokemon_name: str) -> str:
-        pokemon_names = [p.name for p in self.pokemon]
-        if pokemon_name not in pokemon_names:  
-            return 'Pokemon is not caught'
-
-        del self.pokemon[pokemon_name.index(pokemon_name)]
-        return f"You have released {pokemon_name}"
+        # pokemon_names = [p.name for p in self.pokemon]
+        # if pokemon_name not in pokemon_names:  
+        #     return 'Pokemon is not caught'
+        for pok in range(len(self.pokemon)):
+            if pokemon_name in self.pokemon[pok].name:
+                self.pokemon.remove(pok)
+                return f"You have released {pokemon_name}"
+        return 'Pokemon is not caught'
+        # del self.pokemon[pokemon_name.index(pokemon_name)]
+        # return f"You have released {pokemon_name}"
 
     def trainer_data(self):
         trainer_info = [
