@@ -1,4 +1,4 @@
-from player import Player
+from project.player import Player
 from typing import List
 
 
@@ -34,3 +34,6 @@ class Guild:
             message.append(player.player_info())
 
         return nl.join(message)
+
+
+

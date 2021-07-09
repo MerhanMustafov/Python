@@ -32,3 +32,4 @@ class Player:
         for skill, cost in self.skills.items():
             message.append(f'==={skill} - {cost}')
         return nl.join(message) + nl
+
