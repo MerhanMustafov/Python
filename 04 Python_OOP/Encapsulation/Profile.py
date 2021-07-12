@@ -1,9 +1,10 @@
 def password(password):
     return ["*" for x in range(len(password))]
+
 class Profile:
     def __init__(self, username, password):
         self.username = username
-        self.password = password  
+        self.password = password
     @property
     def username(self):
         return self.__username
@@ -24,6 +25,7 @@ class Profile:
             raise ValueError("The password must be 8 or more characters with at least 1 digit and 1 uppercase letter.")
         self.__password = password
         
+        
 
     def __str__(self):
         p = "".join(password(self.__password))
@@ -33,7 +35,7 @@ class Profile:
 
 # profile_with_invalid_username = Profile('Too_long_userasdasda', 'Any') 
 # print(profile_with_invalid_username.username)
-correct_profile = Profile("Username", "Passw0rd")
-print(correct_profile)
+# correct_profile = Profile("Username", "Passw0rd")
+# print(correct_profile)
 
 # profile_with_invalid_password = Profile('My_username', 'My-password')
