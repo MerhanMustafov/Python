@@ -25,11 +25,8 @@ class Shop:
         return f"Not enough capacity in the shop"
 
     def remove_item(self, item_name, amount):
-        if item_name in self.items:
-            if self.items[item_name] < amount:
-                self.items[item_name] = 0
-            else:
-                self.items[item_name] -= amount
+        if item_name in self.items and self.items[item_name] >= amount:
+            self.items[item_name] -= amount
             self.capacity += amount
             return f"{amount} {item_name} removed from the shop"
         return f"Cannot remove {amount} {item_name}"
