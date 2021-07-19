@@ -1,6 +1,4 @@
 class EncryptionGenerator:
-    START = 32
-    END = 127 
     def __init__(self, text: str):
         self.text = text
     def __add__(self, other):
