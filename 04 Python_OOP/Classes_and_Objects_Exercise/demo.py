@@ -1,3 +1,18 @@
+# class Example:
+#     x = ["aaaaaa"]
+#     def __init__(self):
+#         pass
+#
+# example = Example()
+# example_2 = Example
+# example.x.append("bbbbbbbbbbbb")
+# print(example.x)
+# print(example_2.x)
+# example.x = "bbbbb"
+# print(example.x)
+# print(example_2.x)
+# print(example.x)
+
 
 
 # def ingredient_in(self, ingredients, ingredient):
