@@ -28,11 +28,18 @@ class Zoo:
         return "Not enough space for worker"
 
     def fire_worker(self, worker_name):
-        for worker in self.workers:
-            if worker_name == worker.name:
-                self.workers.remove(worker)
-                return f"{worker_name} fired successfully"
-        return f"There is no {worker_name} in the zoo"
+        try:
+            worker = [w for w in self.workers if w.name == worker_name][0]
+            self.workers.remove(worker)
+            return f"{worker_name} fired successfully"
+        except IndexError:
+            return f"There is no {worker_name} in the zoo"
+
+        # for worker in self.workers:
+        #     if worker_name == worker.name:
+        #         self.workers.remove(worker)
+        #         return f"{worker_name} fired successfully"
+        # return f"There is no {worker_name} in the zoo"
 
     def pay_workers(self):
         total_money_neede_for_workers = sum([w.salary for w in self.workers])
@@ -52,42 +59,71 @@ class Zoo:
         self.__budget += amount
 
     def animals_status(self):
+        lions = [l for l in self.animals if l.__class__.__name__ == "Lion"]
+        tigers = [t for t in self.animals if t.__class__.__name__ == "Tiger"]
+        cheetahs = [ch for ch in self.animals if ch.__class__.__name__ == "Cheetah"]
         result = f"You have {len(self.animals)} animals\n"
-        lions_count = len([animal for animal in self.animals if animal.__class__.__name__ == "Lion"])
-        result += f"-"*5 + " " +f"{lions_count} Lions:\n"
-        for animal in self.animals:
-            if animal.__class__.__name__ == "Lion":
-                result += animal.__repr__() + "\n"
-        tiger_count = len([animal for animal in self.animals if animal.__class__.__name__ == "Tiger"])
-        result += f"-" * 5 + " "  + f"{tiger_count} Tigers:\n"
-        for animal in self.animals:
-            if animal.__class__.__name__ == "Tiger":
-                result += animal.__repr__() + "\n"
-        cheetah_count = len([animal for animal in self.animals if animal.__class__.__name__ == "Cheetah"])
-        result += f"-" * 5 + " " + f"{cheetah_count} Cheetahs:\n"
-        for animal in self.animals:
-            if animal.__class__.__name__ == "Cheetah":
-                result += animal.__repr__() + "\n"
-        return result[:-1]
+        result += f"-"*5 + " " +f"{len(lions)} Lions:\n"
+        result += "\n".join([l.__repr__() for l in lions])
+
+        result += "\n" + f"-" * 5 + " " + f"{len(tigers)} Tigers:\n"
+        result += "\n".join([t.__repr__() for t in tigers])
+
+        result += "\n" +f"-" * 5 + " " + f"{len(cheetahs)} Cheetahs:\n"
+        result += "\n".join([ch.__repr__() for ch in cheetahs])
+
+
+        return result
+        # result = f"You have {len(self.animals)} animals\n"
+        # lions_count = len([animal for animal in self.animals if animal.__class__.__name__ == "Lion"])
+        # result += f"-"*5 + " " +f"{lions_count} Lions:\n"
+        # for animal in self.animals:
+        #     if animal.__class__.__name__ == "Lion":
+        #         result += animal.__repr__() + "\n"
+        # tiger_count = len([animal for animal in self.animals if animal.__class__.__name__ == "Tiger"])
+        # result += f"-" * 5 + " "  + f"{tiger_count} Tigers:\n"
+        # for animal in self.animals:
+        #     if animal.__class__.__name__ == "Tiger":
+        #         result += animal.__repr__() + "\n"
+        # cheetah_count = len([animal for animal in self.animals if animal.__class__.__name__ == "Cheetah"])
+        # result += f"-" * 5 + " " + f"{cheetah_count} Cheetahs:\n"
+        # for animal in self.animals:
+        #     if animal.__class__.__name__ == "Cheetah":
+        #         result += animal.__repr__() + "\n"
+        # return result[:-1]
 
     def workers_status(self):
+        keepers = [k for k in self.workers if k.__class__.__name__ == "Keeper"]
+        caretakers = [c for c in self.workers if c.__class__.__name__ == "Caretaker"]
+        vets = [v for v in self.workers if v.__class__.__name__ == "Vet"]
         result = f"You have {len(self.workers)} workers\n"
-        keeper_count = len([worker for worker in self.workers if worker.__class__.__name__ == "Keeper"])
-        result += f"-" * 5 + " " + f"{keeper_count} Keepers:\n"
-        for worker in self.workers:
-            if worker.__class__.__name__ == "Keeper":
-                result += worker.__repr__() + "\n"
-        caretakers_count = len([worker for worker in self.workers if worker.__class__.__name__ == "Caretaker"])
-        result += f"-" * 5 + " "  + f"{caretakers_count} Caretakers:\n"
-        for worker in self.workers:
-            if worker.__class__.__name__ == "Caretaker":
-                result += worker.__repr__() + "\n"
-        vets_count = len([worker for worker in self.workers if worker.__class__.__name__ == "Vet"])
-        result += f"-" * 5 + " " + f"{vets_count} Vets:\n"
-        for worker in self.workers:
-            if worker.__class__.__name__ == "Vet":
-                result += worker.__repr__() + "\n"
-        return result[:-1]
+        result += f"-" * 5 + " " + f"{len(keepers)} Keepers:\n"
+        result += ", ".join([k.__repr__() for k in keepers])
+
+        result += "\n" + f"-" * 5 + " " + f"{len(caretakers)} Caretakers:\n"
+        result += ", ".join([c.__repr__() for c in caretakers])
+
+        result += "\n" + f"-" * 5 + " " + f"{len(vets)} Vets:\n"
+        result += ", ".join([v.__repr__() for v in vets])
+
+        return result
+        # result = f"You have {len(self.workers)} workers\n"
+        # keeper_count = len([worker for worker in self.workers if worker.__class__.__name__ == "Keeper"])
+        # result += f"-" * 5 + " " + f"{keeper_count} Keepers:\n"
+        # for worker in self.workers:
+        #     if worker.__class__.__name__ == "Keeper":
+        #         result += worker.__repr__() + "\n"
+        # caretakers_count = len([worker for worker in self.workers if worker.__class__.__name__ == "Caretaker"])
+        # result += f"-" * 5 + " "  + f"{caretakers_count} Caretakers:\n"
+        # for worker in self.workers:
+        #     if worker.__class__.__name__ == "Caretaker":
+        #         result += worker.__repr__() + "\n"
+        # vets_count = len([worker for worker in self.workers if worker.__class__.__name__ == "Vet"])
+        # result += f"-" * 5 + " " + f"{vets_count} Vets:\n"
+        # for worker in self.workers:
+        #     if worker.__class__.__name__ == "Vet":
+        #         result += worker.__repr__() + "\n"
+        # return result[:-1]
 
 
 # from project.worker import Worker
@@ -300,7 +336,7 @@ class Zoo:
 #     unittest.main()
 
 
-
+#
 # from project.caretaker import Caretaker
 # from project.cheetah import Cheetah
 # from project.keeper import Keeper
