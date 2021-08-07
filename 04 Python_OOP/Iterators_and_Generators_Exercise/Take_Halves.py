@@ -1,25 +1,21 @@
 def solution():
     def integers():
-        nums = 1
+        current_num = 1
         while True:
-            yield nums + 1
-
-    # TODO: Implement
+            yield current_num
+            current_num += 1
 
     def halves():
         nums = []
         for i in integers():
-            x = i/2
-            nums.append(x)
-        return nums
-
-    # TODO: Implement
+            yield i / 2
 
     def take(n, seq):
-        lst = []
-        for n in seq:
-            lst.append(n)
-    # TODO: Implement
+        my_list = []
+        for num in seq:
+            if len(my_list) == n:
+                return my_list
+            my_list.append(num)
 
     return (take, halves, integers)
 
