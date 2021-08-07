@@ -1,7 +1,7 @@
 import math
 def get_primes(num_lst):
-    for ind in range(len(num_lst)-1,-1 , -1):
-        number = num_lst[ind]
+    for indx in range(len(num_lst) - 1, -1 , -1):
+        number = num_lst[indx]
         if number > 1:
             for n in range(2, int(math.sqrt(number)+1)):
                 if (number % n) == 0:

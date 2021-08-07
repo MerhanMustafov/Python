@@ -1,8 +1,8 @@
 import itertools
-def possible_permutations(elements):
-    permutations = list(itertools.permutations(elements))
-    for el in permutations:
-        yield list(el)
+def possible_permutations(given_list):
+    permutations = list(itertools.permutations(given_list))
+    for per in permutations:
+        yield list(per)
     #
     # if len(elements) <= 1:
     #     yield elements
