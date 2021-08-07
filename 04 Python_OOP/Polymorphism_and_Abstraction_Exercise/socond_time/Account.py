@@ -85,8 +85,3 @@ print(acc3)
 print(acc3._transactions)
 
 
-
-
-
-
-
