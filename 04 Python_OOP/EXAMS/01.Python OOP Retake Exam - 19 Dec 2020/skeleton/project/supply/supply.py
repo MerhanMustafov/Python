@@ -18,4 +18,5 @@ class Supply(ABC):
     # TODO think if this should be marked with @abstractmethod
     @abstractmethod
     def apply(self, survivor):
+        # survivor.needs += self.__needs_increase
         pass

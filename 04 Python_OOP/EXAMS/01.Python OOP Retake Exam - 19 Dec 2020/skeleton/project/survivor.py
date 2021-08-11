@@ -1,11 +1,21 @@
-class Survivor:
-    def __init__(self, name, age):
+from project.supply.supply import Supply
+
+
+class Survivor(Supply):
+    def __init__(self, __needs_increase,name, age):
+        super().__init__(__needs_increase)
         self.__name = name
         self.__age = age
         self.__health = 100
         self.__needs = 100
         self.__needs_sustenance = False
         self.__needs_healing = False
+
+    def apply(self, survivor):
+        if self.__health + self.__needs_increase > 100:
+            self.__health = 100
+        else:
+            self.__health += self.__needs_increase
 
     @property
     def name(self):
@@ -55,3 +65,4 @@ class Survivor:
     def needs_healing(self):
         if self.__health < 100:
             return True
+

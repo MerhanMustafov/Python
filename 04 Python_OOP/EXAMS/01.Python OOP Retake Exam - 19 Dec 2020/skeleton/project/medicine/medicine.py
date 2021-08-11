@@ -17,6 +17,10 @@ class Medicine(ABC):
         self.__health_increase = value
 
         # TODO think if this should be marked with @abstractmethod
+
     @abstractmethod
     def apply(self, survivor):
+        """Method should increase the needs property of the
+         given survivor with the supply's needs_increase value"""
+        # survivor.health += self.__health_increase
         pass
