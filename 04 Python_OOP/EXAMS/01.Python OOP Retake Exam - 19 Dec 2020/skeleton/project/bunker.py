@@ -1,42 +1,37 @@
-from project.medicine.medicine import Medicine
-from project.supply.supply import Supply
-
-
-class Bunker(Supply, Medicine):
-    def __init__(self, __needs_increase, __health_increase):
-        super().__init__(__needs_increase)
-        super().__init__(__health_increase)
+class Bunker:
+    def __init__(self):
         self.survivors = []#all the survivors (objects)
         self.supplies = []#all the supplies (objects)
         self.medicine = []#all the medicine (objects)
-        self.__food = []
-        self.__water = []
-        self.__painkillers = []
-        self.__salves = []
+
     @property
     def food(self):
-        if [sup for sup in self.supplies if sup.__class__.__name__ == "FoodSupply"][0]:
-            return [sup for sup in self.supplies if sup.__class__.__name__ == "FoodSupply"]
-        raise IndexError("There are no food supplies left!")
-
+        food_s = [sup for sup in self.supplies if sup.__class__.__name__ == "FoodSupply"]
+        if food_s:
+            return food_s
+        else:
+            raise IndexError(f"There are no food supplies left!")
     @property
     def water(self):
-        if [sup for sup in self.supplies if sup.__class__.__name__ == "WaterSupply"][0]:
-            return [sup for sup in self.supplies if sup.__class__.__name__ == "WaterSupply"]
-        raise IndexError("There are no water supplies left!")
-
+        water_sup = [sup for sup in self.supplies if sup.__class__.__name__ == "WaterSupply"]
+        if water_sup:
+            return water_sup
+        else:
+            raise IndexError(f"There are no water supplies left!")
     @property
     def painkillers(self):
-        if [med for med in self.medicine if med.__class__.__name__ == "Painkiller"][0]:
-            return [med for med in self.medicine if med.__class__.__name__ == "Painkiller"]
-        raise IndexError("There are no painkillers left!")
-
+        painkiller = [m for m in self.medicine if m.__class__.__name__ == "Painkiller"]
+        if painkiller:
+            return painkiller
+        else:
+            raise IndexError(f"There are no painkillers left!")
     @property
     def salves(self):
-        if [med for med in self.medicine if med.__class__.__name__ == "Painkiller"][0]:
-            return [med for med in self.medicine if med.__class__.__name__ == "Painkiller"]
-        raise IndexError("There are no salves left!")
-
+        salves = [m for m in self.medicine if m.__class__.__name__ == "Salve"]
+        if salves:
+            return salves
+        else:
+            raise IndexError(f"There are no salves left!")
 
 
     def add_survivor(self, survivor):#obj
@@ -48,34 +43,35 @@ class Bunker(Supply, Medicine):
     def add_medicine(self, medicine):#obj
         self.medicine.append(medicine)
     def heal(self, survivor, medicine_type):
+        to_remove_med = [m for m in self.medicine if m.__class__.__name__ == medicine_type][-1]
+
         if survivor.needs_healing:
-            for med in self.medicine[::-1]:
-                if isinstance(med, medicine_type):
-                    survivor.apply()
-                    return f"{survivor.name} healed successfully with {medicine_type}"
+            self.medicine.remove(to_remove_med)
+            to_remove_med.apply(survivor)
+            return f"{survivor.name} healed successfully with {medicine_type}"
+
 
     def sustain(self, survivor, sustenance_type):
-        if survivor.needs_sustenance:
-            for s in self.supplies[::-1]:
-                if isinstance(s, sustenance_type):
-                    survivor.apply()
-                    return f"{survivor.name} sustained successfully with {sustenance_type}"
+        to_remove_supply = [s for s in self.supplies if s.__class__.__name__ == sustenance_type][-1]
 
+        if survivor.needs_sustenance:
+            self.supplies.remove(to_remove_supply)
+            to_remove_supply.apply(survivor)
+            return f"{survivor.name} sustained successfully with {sustenance_type}"
 
 
     def next_day(self):
-        for sur in self.survivors:
-            sur.needs -= sur.age * 2
-
         for s in self.survivors:
-            if s.needs + 20 > 100:
-                s.needs = 100
-            else:
-                s.needs += 20
-            if s.needs + 40 > 100:
-                s.needs = 100
-            else:
-                s.needs += 40
+            s.needs -= s.age*2
+        for survivor in self.survivors:
+            self.sustain(survivor, "WaterSupply")
+            self.sustain(survivor, "FoodSupply")
+
+# from project.supply.food_supply import FoodSupply
+# from project.supply.water_supply import WaterSupply
+# bunker = Bunker()
+# bunker.supplies = [WaterSupply()]
+# print(bunker.food)
 
 
 

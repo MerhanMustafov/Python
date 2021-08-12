@@ -1,21 +1,10 @@
-from project.supply.supply import Supply
+class Survivor:
+    def __init__(self, name, age):
+        self.name = name
+        self.age = age
+        self.health = 100
+        self.needs = 100
 
-
-class Survivor(Supply):
-    def __init__(self, __needs_increase,name, age):
-        super().__init__(__needs_increase)
-        self.__name = name
-        self.__age = age
-        self.__health = 100
-        self.__needs = 100
-        self.__needs_sustenance = False
-        self.__needs_healing = False
-
-    def apply(self, survivor):
-        if self.__health + self.__needs_increase > 100:
-            self.__health = 100
-        else:
-            self.__health += self.__needs_increase
 
     @property
     def name(self):
@@ -45,24 +34,38 @@ class Survivor(Supply):
     def health(self, value):
         if value < 0:
             raise ValueError("Health not valid!")
-
+        if value > 100:
+            self.__health = 100
+        else:
+            self.__health = value
     @property
     def needs(self):
         return self.__needs
 
-    @health.setter
-    def health(self, value):
+    @needs.setter
+    def needs(self, value):
         if value < 0:
             raise ValueError("Needs not valid!")
-        self.__needs = value
+        if value > 100:
+            self.__health = 100
+        else:
+            self.__needs = value
 
     @property
     def needs_sustenance(self):
-        if self.__needs < 100:
-            return True
+        return self.__needs < 100
 
     @property
     def needs_healing(self):
-        if self.__health < 100:
-            return True
+        return self.__health < 100
 
+
+
+
+
+# sur = Survivor("Pesho", 18)
+# print(sur.health)
+# sur.health = 80
+# print(sur.health)
+# sur.health += 21
+# print(sur.health)

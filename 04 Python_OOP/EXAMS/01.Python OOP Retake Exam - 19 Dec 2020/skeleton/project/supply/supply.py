@@ -2,8 +2,9 @@ from abc import ABC, abstractmethod
 
 
 class Supply(ABC):
+    @abstractmethod
     def __init__(self, needs_increase):
-        self.__needs_increase = needs_increase
+        self.needs_increase = needs_increase
 
     @property
     def needs_increase(self):
@@ -16,7 +17,5 @@ class Supply(ABC):
         self.__needs_increase = value
 
     # TODO think if this should be marked with @abstractmethod
-    @abstractmethod
     def apply(self, survivor):
-        # survivor.needs += self.__needs_increase
-        pass
+        survivor.needs += self.needs_increase
