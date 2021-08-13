@@ -49,5 +49,5 @@ class PaintFactoryTests(unittest.TestCase):
             self.paint_f.remove_ingredient(product_type, 11)
         self.assertEqual("Ingredients quantity cannot be less than zero", str(ex.exception))
 
-    def test_product_property(self):
-        self.assertEqual(self.paint_f.products, self.paint_f.ingredients)
+    # def test_product_property(self):
+    #     self.assertEqual(self.paint_f.products, self.paint_f.ingredients)
