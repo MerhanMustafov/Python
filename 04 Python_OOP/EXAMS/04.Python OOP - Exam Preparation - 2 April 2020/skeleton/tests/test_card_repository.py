@@ -42,7 +42,7 @@ class PlayerRepositoryTests(unittest.TestCase):
     def test_remove(self):
         card = MagicCard("Magic")
         self.card_repo.add(card)
-        c = "Gojo"
-        self.card_repo.remove(c)
+        card_name = "Magic"
+        self.card_repo.remove(card_name)
         self.assertEqual(len(self.card_repo.cards), self.card_repo.count)
         self.assertEqual(self.card_repo.count, 0)

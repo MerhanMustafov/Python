@@ -10,11 +10,6 @@ class Player(ABC):
         self.health = health
         self.card_repository = CardRepository()
 
-    # # TODO think if this is classmethod
-    # @classmethod
-    # def card_repository(cls):
-    #     pass
-
     @property
     def is_dead(self):
         return self.health <= 0
@@ -36,7 +31,7 @@ class Player(ABC):
     @health.setter
     def health(self, value):
         if value < 0:
-            raise ValueError("Player's health bonus cannot be less than zero")
+            raise ValueError("Player's health bonus cannot be less than zero.")
         self.__health = value
 
     def take_damage(self, damage_points):
@@ -44,7 +39,10 @@ class Player(ABC):
             raise ValueError("Damage points cannot be less than zero.")
         self.health -= damage_points
 
-
-
+    def __str__(self):
+        result = f"Username: {self.username} - Health: {self.health} - Cards {self.card_repository.count}\n"
+        for c in self.card_repository.cards:
+            result += f"### Card: {c.name} - Damage: {c.damage_points}\n"
+        return result
 
 

@@ -23,31 +23,30 @@ class Controller:
         return f"Successfully added player of type {type} with username: {username}"
     def add_card(self, type, name):
         card = None
-        if type == "MagicCard":
+        if type == "Magic":
             card = MagicCard(name)
-        elif type == "TrapCard":
+        elif type == "Trap":
             card = TrapCard(name)
         self.card_repository.cards.append(card)
         return f"Successfully added card of type {type}Card with name: {name}"
+
     def add_player_card(self, username, card_name):
-        for p in self.player_repository.players:
-            if p.username == username:
-                card = p.card_repository.find(card_name)
-                p.card_repository.cards.append(card)
-                return f"Successfully added card: {card_name} to user: {username}"
+        player = self.player_repository.find(username)
+        card = self.card_repository.find(card_name)
+        player.card_repository.cards.append(card)
+        return f"Successfully added card: {card_name} to user: {username}"
 
     def fight(self, attack_name, enemy_name):
         attacker = self.player_repository.find(attack_name)
         enemy = self.player_repository.find(enemy_name)
         BattleField.fight(attacker, enemy)
+        return f"Attack user health {attacker.health} - Enemy user health {enemy.health}"
     def report(self):
         result = ""
         for p in self.player_repository.players:
-            result += f"Username: {p.username} - Health: {p.health} - Cards {p.card_repository.count}\n"
-            for c in p.card_repository.cards:
-                result += f"### Card: {c.name} - Damage: {c.damage_points}\n"
-
+            result += p.__str__()
         return result
+
 # controller = Controller()
 # print(controller.card_repository.cards)
 # print(controller)

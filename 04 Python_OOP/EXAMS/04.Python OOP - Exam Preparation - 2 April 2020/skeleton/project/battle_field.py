@@ -14,19 +14,21 @@ class BattleField:
             for c in enemy.card_repository.cards:
                 c.damage_points += 30
 
-        before_fight_bonus_attacker = sum([c.health_points for c in attacker.card_repository.cards])
-        before_fight_bonus_enemy = sum([c.health_points for c in enemy.card_repository.cards])
+        bonus_attacker = sum([c.health_points for c in attacker.card_repository.cards])
+        bonus_enemy = sum([c.health_points for c in enemy.card_repository.cards])
 
-        attacker.health += before_fight_bonus_attacker
-        enemy.health += before_fight_bonus_enemy
+        attacker.health += bonus_attacker
+        enemy.health += bonus_enemy
+
+        for card in attacker.card_repository.cards:
+            enemy.take_damage(card.damage_points)
+            if enemy.is_dead:
+                return
 
         for card in enemy.card_repository.cards:
             attacker.take_damage(card.damage_points)
             if attacker.is_dead:
                 return
 
-        for card in attacker.card_repository.cards:
-            enemy.take_damage(card.damage_points)
-            if enemy.is_dead:
-                return
+
 
