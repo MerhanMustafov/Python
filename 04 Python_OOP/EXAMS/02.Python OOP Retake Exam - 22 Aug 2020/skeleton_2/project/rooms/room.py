@@ -1,5 +1,5 @@
-from project.appliances.appliance import Appliance
-from project.people.child import Child
+# from project.appliances.appliance import Appliance
+# from project.people.child import Child
 
 
 class Room:
@@ -22,7 +22,6 @@ class Room:
         self.__expenses = value
 
     def calculate_expenses(self, *args):
-        # result = sum([el.cost for el in args])
         result = 0
         for el in args:
             for e in el:
