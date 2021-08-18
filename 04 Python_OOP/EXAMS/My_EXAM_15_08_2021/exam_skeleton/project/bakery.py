@@ -9,7 +9,6 @@ from project.table.outside_table import OutsideTable
 class Bakery:
     def __init__(self, name):
         self.name = name
-
         # that will contain every type
         # of food in the bakery's menu.
         self.food_menu = []
@@ -19,6 +18,7 @@ class Bakery:
         # list containing every table at the bakery.
         self.tables_repository = []
         self.total_income = 0
+        
 
     @property
     def name(self):
