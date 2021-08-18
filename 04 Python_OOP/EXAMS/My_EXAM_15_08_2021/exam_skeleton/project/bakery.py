@@ -39,11 +39,11 @@ class Bakery:
             self.food_menu.append(bread)
             return f"Added {name} ({food_type}) to the food menu"
         if food_type == "Cake":
-            cack = Cake(name, price)
-            if cack in self.food_menu:
+            cake = Cake(name, price)
+            if cake in self.food_menu:
                 raise Exception(f"{food_type} {name} is already in the menu!")
 
-            self.food_menu.append(cack)
+            self.food_menu.append(cake)
             return f"Added {name} ({food_type}) to the food menu"
 
 

@@ -1,6 +1,7 @@
 from abc import ABC, abstractmethod
 
 
+
 class Table(ABC):
     @abstractmethod
     def __init__(self, table_number, capacity):
@@ -15,8 +16,9 @@ class Table(ABC):
 
 
     def reserve(self, number_of_people):
-        self.is_reserved = True
-        self.number_of_people = number_of_people
+        if self.capacity >= number_of_people:
+            self.is_reserved = True
+            self.number_of_people = number_of_people
 
     def order_food(self, baked_food):  # OBJ
         self.food_orders.append(baked_food)
@@ -38,11 +40,13 @@ class Table(ABC):
         self.food_orders = []
         self.drink_orders = []
         self.is_reserved = False
+        self.number_of_people = 0
 
     def free_table_info(self):
         if not self.is_reserved:
             return f"Table: {self.table_number}\n" \
                     f"Type: {self.__class__.__name__}\n" \
                     f"Capacity: {self.capacity}"
+
 
 

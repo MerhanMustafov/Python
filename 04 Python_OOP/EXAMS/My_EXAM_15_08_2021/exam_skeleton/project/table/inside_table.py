@@ -1,3 +1,4 @@
+# from project.table.outside_table import OutsideTable
 from project.table.table import Table
 
 
@@ -18,3 +19,9 @@ class InsideTable(Table):
 
 # inside_table = InsideTable(51, 10)
 # print(inside_table.table_number)
+
+# inside_table = InsideTable(1, 3)
+# outside_table = OutsideTable(51, 7)
+# print(inside_table.free_table_info())
+# print(outside_table.free_table_info())
+
