@@ -18,7 +18,7 @@ class Bakery:
         # list containing every table at the bakery.
         self.tables_repository = []
         self.total_income = 0
-        
+
 
     @property
     def name(self):
