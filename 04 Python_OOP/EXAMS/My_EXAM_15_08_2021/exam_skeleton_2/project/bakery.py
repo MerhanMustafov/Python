@@ -74,68 +74,121 @@ class Bakery:
 
         return f"No available table for {number_of_people} people"
 
-    def order_food(self, table_number: int, *food_names):
-        food_names = list(food_names)
-        menue = [f.name for f in self.food_menu]
-        ordered = []
-        not_in_the_menue = []
-
-        for table in self.tables_repository:
-            if table.table_number == table_number:
-
+    # def order_food(self, table_number: int, *food_names):
+    #     food_names = list(food_names)
+    #     menue = [f.name for f in self.food_menu]
+    #     ordered = []
+    #     not_in_the_menue = []
+    #
+    #     for table in self.tables_repository:
+    #         if table.table_number == table_number:
+    #
+    #             for food in self.food_menu:
+    #                 if food.name in food_names:
+    #                     ordered.append(food)
+    #                     table.order_food(food)
+    #
+    #
+    #             for f_name in food_names:
+    #                 if f_name not in menue:
+    #                     not_in_the_menue.append(f_name)
+    #             result = ""
+    #
+    #             result += f"Table {table_number} ordered\n"
+    #             for f in ordered:
+    #                 result += f"{repr(f)}\n"
+    #             if not_in_the_menue:
+    #                 result += f"{self.name} does not have in the menu:\n"
+    #                 for ff in not_in_the_menue:
+    #                     result += f"{ff}\n"
+    #             return result[:-1]
+    #
+    #     return f"Could not find table {table_number}"
+    #
+    #
+    #
+    #
+    # def order_drink (self, table_number, *drinks_name):
+    #     drinks_name = list(drinks_name)
+    #     menue = [d.name for d in self.drinks_menu]
+    #     ordered = []
+    #     not_in_the_menue = []
+    #
+    #     for table in self.tables_repository:
+    #         if table.table_number == table_number:
+    #
+    #             for drink in self.drinks_menu:
+    #                 if drink.name in drinks_name:
+    #                     ordered.append(drink)
+    #                     table.order_drink(drink)
+    #
+    #
+    #             for d_name in drinks_name:
+    #                 if d_name not in menue:
+    #                     not_in_the_menue.append(d_name)
+    #             result = ""
+    #
+    #             result += f"Table {table_number} ordered\n"
+    #             for d in ordered:
+    #                 result += f"{repr(d)}\n"
+    #             if not_in_the_menue:
+    #                 result += f"{self.name} does not have in the menu:\n"
+    #                 for dd in not_in_the_menue:
+    #                     result += f"{dd}\n"
+    #             return result[:-1]
+    #
+    #     return f"Could not find table {table_number}"
+    def order_food(self, table_number: int, *args):
+        table = [t for t in self.tables_repository if t.table_number == table_number]
+        if table:
+            table = table[0]
+            food_not_in_menu = []
+            for food_name in args:
+                is_found = False
                 for food in self.food_menu:
-                    if food.name in food_names:
-                        ordered.append(food)
+                    if food.name == food_name:
                         table.order_food(food)
+                        is_found = True
+                        break
+                if not is_found:
+                    food_not_in_menu.append(food_name)
 
+            result = f"Table {table.table_number} ordered:\n"
+            for food in table.food_orders:
+                result += f"{repr(food)}\n"
+            if food_not_in_menu:
+                result += f"{self.name} does not have in the menu:\n"
+                for food in food_not_in_menu:
+                    result += f"{food}\n"
 
-                for f_name in food_names:
-                    if f_name not in menue:
-                        not_in_the_menue.append(f_name)
-                result = ""
-                if ordered:
-                    result += f"Table {table_number} ordered\n"
-                    for f in ordered:
-                        result += f" - {f.name}: {f.portion:.2f}g - {f.price:.2f}lv\n"
-                    if not_in_the_menue:
-                        result += f"{self.name} does not have in the menu:\n"
-                        for ff in not_in_the_menue:
-                            result += f"{ff}\n"
-                    return result[:-1]
+            return result
 
         return f"Could not find table {table_number}"
 
-
-
-
-    def order_drink (self, table_number, *drinks_name):
-        drinks_name = list(drinks_name)
-        menue = [d.name for d in self.drinks_menu]
-        ordered = []
-        not_in_the_menue = []
-
-        for table in self.tables_repository:
-            if table.table_number == table_number:
-
+    def order_drink(self, table_number: int, *args):
+        table = [t for t in self.tables_repository if t.table_number == table_number]
+        if table:
+            table = table[0]
+            drinks_not_in_menu = []
+            for drink_name in args:
+                is_found = False
                 for drink in self.drinks_menu:
-                    if drink.name in drinks_name:
-                        ordered.append(drink)
+                    if drink.name == drink_name:
                         table.order_drink(drink)
+                        is_found = True
+                        break
+                if not is_found:
+                    drinks_not_in_menu.append(drink_name)
 
+            result = f"Table {table.table_number} ordered:\n"
+            for drink in table.drink_orders:
+                result += f"{repr(drink)}\n"
+            if drinks_not_in_menu:
+                result += f"{self.name} does not have in the menu:\n"
+                for drink in drinks_not_in_menu:
+                    result += f"{drink}\n"
 
-                for d_name in drinks_name:
-                    if d_name not in menue:
-                        not_in_the_menue.append(d_name)
-                result = ""
-                if ordered:
-                    result += f"Table {table_number} ordered\n"
-                    for d in ordered:
-                        result += f" - {d.name}: {d.portion:.2f}g - {d.price:.2f}lv\n"
-                    if not_in_the_menue:
-                        result += f"{self.name} does not have in the menu:\n"
-                        for dd in not_in_the_menue:
-                            result += f"{dd}\n"
-                    return result[:-1]
+            return result
 
         return f"Could not find table {table_number}"
 
@@ -158,5 +211,4 @@ class Bakery:
         return result[:-1]
 
     def get_total_income(self):
-
         return f"Total income: {self.total_income:.2f}lv"
