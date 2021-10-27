@@ -1,2 +1,2 @@
-# SoftUniPython
-My SoftUni assignments
+# Python
+assignments
